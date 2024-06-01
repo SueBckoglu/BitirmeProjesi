@@ -3,7 +3,6 @@ import HomeView from '../views/HomeView.vue'
 import SignupView from '../views/SignupView.vue'
 import LoginView from '../views/LoginView.vue'
 import FeedView from '../views/FeedView.vue'
-import MessagesView from '../views/MessagesView.vue'
 import SearchView from '../views/SearchView.vue'
 import AdoptView from '../views/AdoptView.vue'
 import VolunteerView from '../views/VolunteerView.vue'
@@ -11,6 +10,17 @@ import DonationView from '../views/DonationView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import FriendsView from '../views/FriendsView.vue'
 import ForyouView from '../views/ForyouView.vue'
+import PostView from '../views/PostView.vue'
+import ChatView from '../views/ChatView.vue'
+import TrendView from '../views/TrendView.vue'
+import EditProfileView from '../views/EditProfileView.vue'
+import EditPasswordView from '../views/EditPasswordView.vue'
+import NotificationsView from '../views/NotificationsView.vue'
+import AnimalProfileView from '../views/AnimalProfileView.vue'
+import ShelterProfileView from '../views/ShelterProfileView.vue'
+import SignupShelterView from '../views/SignupShelterView.vue'
+import SignupAnimalView from '../views/SignupAnimalView.vue'
+import EventView from '../views/EventView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +29,31 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },
+    {
+      path: '/animalprofile',
+      name: 'animalprofile',
+      component: AnimalProfileView
+    },
+    {
+      path: '/shelterprofile',
+      name: 'shelterprofile',
+      component: ShelterProfileView
+    },
+    {
+      path: '/signupshelter',
+      name: 'signupshelter',
+      component: SignupShelterView
+    },
+    {
+      path: '/signupanimal',
+      name: 'signupanimal',
+      component: SignupAnimalView
+    },
+    {
+      path: '/event',
+      name: 'event',
+      component: EventView
     },
     {
       path: '/signup',
@@ -36,14 +71,19 @@ const router = createRouter({
       component: FeedView
     },
     {
-      path: '/messages',
-      name: 'messages',
-      component: MessagesView
-    },
-    {
       path: '/search',
       name: 'search',
       component: SearchView
+    },
+    {
+      path: '/chat',
+      name: 'chat',
+      component: ChatView
+    },
+    {
+      path: '/notifications',
+      name: 'notifications',
+      component: NotificationsView
     },
     {
       path: '/adopt',
@@ -61,6 +101,16 @@ const router = createRouter({
       component: DonationView
     },
     {
+      path: '/profile/edit',
+      name: 'editprofile',
+      component: EditProfileView
+    },
+    {
+      path: '/profile/edit/password',
+      name: 'editpassword',
+      component: EditPasswordView
+    },
+    {
       path: '/profile/:id',
       name: 'profile',
       component: ProfileView
@@ -74,6 +124,16 @@ const router = createRouter({
       path: '/foryou',
       name: 'foryou',
       component: ForyouView
+    },
+    {
+      path: '/:id',
+      name: 'postview',
+      component: PostView
+    },
+    {
+      path: '/trends/:id',
+      name: 'trendview',
+      component: TrendView
     },
     {
       path: '/about',

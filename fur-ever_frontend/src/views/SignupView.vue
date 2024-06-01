@@ -19,6 +19,12 @@
 
         <div class="main-right">
             <div class="p-12 bg-white border border-gray-200 rounded-lg">
+                <div class="mb-6">
+                    <p class="font-bold">
+                        Are you a shelter manager looking to create a shelter profile? <RouterLink to="/signupshelter" class="underline">Click here</RouterLink> to get started!
+                    </p>
+                </div>
+
                 <form class="space-y-6" v-on:submit.prevent="submitForm">
                     <div>
                         <label for="">Name</label><br>
@@ -40,7 +46,7 @@
                         <input type="password" v-model="form.password2" placeholder="Confirm your password" class="w-full mt-2 py-4 px-6 border border-gray-200 rounded-lg">
                     </div>
 
-                    <template v-if="error.length > 0">
+                    <template v-if="errors.length > 0">
                         <div class="bg-red-300 text-white rounded-lg p-6">
                             <p v-for="error in errors" v-bind:key="error">{{ error }}</p>
                         </div>
@@ -89,30 +95,35 @@ export default {
             }
 
             if (this.form.name === ''){
-                this.errors.push('Your name is missing')
+                this.errors.push('Your name is missing...')
             }
 
             if (this.form.password1 === ''){
-                this.errors.push('Your password is missing')
+                this.errors.push('Your password is missing...')
             }
 
             if (this.form.password1 !== this.form.password2){
-                this.errors.push('The password does not match')
+                this.errors.push('The passwords does not match!')
             }
             
             if (this.errors.length === 0){
                 axios
                     .post('/api/signup/', this.form)
                     .then(response => {
-                        if (response.data.message === 'success'){
-                             this.toastStore.showToast(5000, 'Welcome to the Fur-Ever Friends adventure! Please log in to keep spreading love and care to our furry pals.', 'bg-emerald-500')
+                        if (response.data.message === 'success') {
+                            this.toastStore.showToast(5000, 'Welcome to the Fur-Ever Friends adventure! Do not forget to activate your account to keep spreading love and care to our furry pals.', 'bg-emerald-500')
+                            this.form.email = ''
+                            this.form.name = ''
+                            this.form.password1 = ''
+                            this.form.password2 = ''
 
-                             this.form.email = ''
-                             this.form.name = ''
-                             this.form.password1 = ''
-                             this.form.password2 = ''
+                            this.$router.push('/login')
                         } else {
-                            this.errors = response.data.errors;
+                            const data = JSON.parse(response.data.message)
+                            for (const key in data){
+                                this.errors.push(data[key][0].message)
+                            }
+                            
                             this.toastStore.showToast(5000, 'Oops! Something went paws-up. Could you please give it another try?', 'bg-red-300')
                         }
                     })

@@ -22,7 +22,7 @@
                     v-for="user in users"
                     v-bind:key="user.id"
                 >
-                    <img src="https://i.pinimg.com/originals/b5/9f/f4/b59ff454de5ce126360313251634ae56.jpg" class="mb-6 rounded-full" alt="picture">
+                    <img :src="user.get_avatar" class="mb-6 rounded-full" alt="picture">
 
                     <p>
                         <strong>
@@ -49,8 +49,11 @@
 
         <div class="main-right col-span-1 space-y-4">
 
+            <PeopleYouMayKnow />
             <AdorableFriendsWaitingForAHome/>
             <HelpOutAtTheseLovingShelters/>
+            <Trends />
+        
         </div>
     </div>
 </template>
@@ -61,6 +64,8 @@ import HelpOutAtTheseLovingShelters from '@/components/HelpOutAtTheseLovingShelt
 import AdorableFriendsWaitingForAHome from '../components/AdorableFriendsWaitingForAHome.vue'
 import FeedItem from '../components/FeedItem.vue'
 import { RouterLink } from 'vue-router';
+import Trends from '@/components/Trends.vue';
+import PeopleYouMayKnow from '@/components/PeopleYouMayKnow.vue';
 
 export default {
     name: 'SearchView',
@@ -68,7 +73,9 @@ export default {
     AdorableFriendsWaitingForAHome,
     HelpOutAtTheseLovingShelters,
     FeedItem,
-    RouterLink
+    RouterLink,
+    Trends,
+    PeopleYouMayKnow
 },
 
     data() {

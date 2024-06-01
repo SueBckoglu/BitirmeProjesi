@@ -55,7 +55,7 @@ export default{
         const userStore = useUserStore()
 
         return {
-            userStore
+            userStore,
         }
     },
 
@@ -87,20 +87,22 @@ export default{
                     .then(response => {
                         this.userStore.setToken(response.data)
 
-                        console.log(response.data.access)
-
                         axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.access;
                     })
                     .catch(error => {
                         console.log('error', error)
-                    })
 
+                        this.errors.push('Hey! You need to check your informations seems off to me! Or did you activate your account ?')
+                    })
+            }
+            
+            if (this.errors.length === 0) {
                 await axios
                     .get('/api/me/')
                     .then(response => {
                         this.userStore.setUserInfo(response.data)
 
-                        this.$router.push('/feed')
+                        this.$router.push('/foryou')
                     })
                     .catch(error => {
                         console.log('error', error)

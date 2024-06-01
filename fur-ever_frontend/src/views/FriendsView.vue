@@ -2,17 +2,18 @@
     <div class="max-w-7xl mx-auto grid grid-cols-4 gap-4">
         <div class="main-left col-span-1">
             <div class="p-4 bg-white border border-gray-200 text-center rounded-lg">
-                <img src="https://i.pinimg.com/originals/88/17/25/881725dd36c94939ef455c26f9708b9d.jpg"
-                    class="mb-6 rounded-full" alt="profile picture" />
+                <img :src="user.get_avatar" class="mb-6 rounded-full">
 
                 <p>
-                    <strong>{{ user.name }}</strong>
+                    <strong>
+                        <RouterLink :to="{ name: 'profile', params: { id: user.id } }">{{ user.name }}</RouterLink>
+                    </strong>
                 </p>
 
                 <div class="mt-6 flex space-x-8 justify-around">
                     <p class="text-xs text-gray-500">2 pets</p>
                     <p class="text-xs text-gray-500">{{ user.friends_count }} friends</p>
-                    <p class="text-xs text-gray-500">120 posts</p>
+                    <p class="text-xs text-gray-500">{{ user.posts_count }} posts</p>
                 </div>
             </div>
         </div>
@@ -24,36 +25,36 @@
 
                 <h2 class="mb-6 text-xl">Friendship Requests</h2>
 
-                <div class="p-4 flex items-center justify-center bg-gray-100 rounded-lg"
-                    v-for="friendshipRequest in friendshipRequests" 
+                <div 
+                    class="p-4 text-center bg-gray-100 rounded-lg"
+                    v-for="friendshipRequest in friendshipRequests"
                     v-bind:key="friendshipRequest.id"
                 >
+                    <img :src="friendshipRequest.created_by.get_avatar" class="mb-6 mx-auto rounded-full">
+                
+                    <p>
+                        <strong>
+                            <RouterLink :to="{name: 'profile', params:{'id': friendshipRequest.created_by.id}}">{{ friendshipRequest.created_by.name }}</RouterLink>
+                        </strong>
+                    </p>
 
-                    <img src="https://i.pinimg.com/originals/b5/9f/f4/b59ff454de5ce126360313251634ae56.jpg"
-                        style="width: 200px; height: auto" class="mr-4 rounded-full" alt="picture" />
+                    <div class="mt-6 flex space-x-8 justify-around">
+                        <p class="text-xs text-gray-500">{{ user.friends_count }} friends</p>
+                        <p class="text-xs text-gray-500">{{ user.posts_count }} posts</p>
+                    </div>
 
-                    <div>
-                        <p class="mb-2">
-                            <strong>
-                                <RouterLink :to="{name: 'profile', params: { id: friendshipRequest.created_by.id },}">{{ friendshipRequest.created_by.name }}</RouterLink>
-                            </strong>
-                        </p>
-
-                        <div class="mt-1 flex flex-col space-y-1">
-                            <p class="text-xs text-gray-500">1 pets</p>
-                            <p class="text-xs text-gray-500">{{ user.friends_count }} friends</p>
-                            <p class="text-xs text-gray-500">120 posts</p>
-                        </div>
-
-                        <div class="mt-6 space-x-2">
-                            <button class="inline-block py-4 px-6 bg-pink-600 text-sm text-white rounded-lg" @click="handleRequest('accepted', friendshipRequest.created_by.id)">Accept</button>
-                            <button class="inline-block py-4 px-6 bg-red-600 text-sm text-white rounded-lg" @click="handleRequest('rejected', friendshipRequest.created_by.id)">Reject</button>
-                        </div>
+                    <div class="mt-6 space-x-4">
+                        <button class="inline-block py-4 px-6 bg-purple-600 text-white rounded-lg" @click="handleRequest('accepted', friendshipRequest.created_by.id)">Accept</button>
+                        <button class="inline-block py-4 px-6 bg-red-600 text-white rounded-lg" @click="handleRequest('rejected', friendshipRequest.created_by.id)">Reject</button>
                     </div>
                 </div>
                 <hr />
             </div>
 
+            <div class="bg-white border border-gray-200 rounded-lg p-4 flex flex-col justify-center items-center text-center space-y-4">
+                    <h1 class="text-3xl font-bold text-pink-600">Buddies</h1>
+                    <p class="text-lg italic text-gray-600">"True friends are those who dance with you in the rain." - Unknown</p>
+            </div>
             <div 
                 class="p-4 bg-white border border-gray-200 rounded-lg grid grid-cols-2 gap-4" 
                 v-if="friends.length">
@@ -64,7 +65,7 @@
                     v-bind:key="user.id"
                 >
 
-                    <img src="https://i.pinimg.com/originals/b5/9f/f4/b59ff454de5ce126360313251634ae56.jpg" class="mb-6 rounded-full" alt="picture" />
+                    <img :src="user.get_avatar" class="mb-6 rounded-full" alt="picture" />
 
                     <p>
                         <strong>
@@ -75,16 +76,21 @@
                     <div class="mt-6 flex space-x-8 justify-around">
                         <p class="text-xs text-gray-500">1 pets</p>
                         <p class="text-xs text-gray-500">{{ user.friends_count }} friends</p>
-                        <p class="text-xs text-gray-500">120 posts</p>
+                        <p class="text-xs text-gray-500">{{ user.posts_count }} posts</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="main-right col-span-1 space-y-4">
+
+            <PeopleYouMayKnow />
+            
             <AdorableFriendsWaitingForAHome />
 
             <HelpOutAtTheseLovingShelters />
+
+            <Trends />
         </div>
     </div>
 </template>
@@ -95,6 +101,9 @@ import HelpOutAtTheseLovingShelters from "../components/HelpOutAtTheseLovingShel
 import AdorableFriendsWaitingForAHome from "../components/AdorableFriendsWaitingForAHome.vue";
 import FeedItem from "../components/FeedItem.vue";
 import { useUserStore } from "@/stores/user";
+import { RouterLink } from "vue-router";
+import Trends from "@/components/Trends.vue";
+import PeopleYouMayKnow from "@/components/PeopleYouMayKnow.vue";
 
 
 export default (await import("vue")).defineComponent({
@@ -109,9 +118,12 @@ export default (await import("vue")).defineComponent({
     },
 
     components: {
-        AdorableFriendsWaitingForAHome,
-        HelpOutAtTheseLovingShelters,
-    },
+    AdorableFriendsWaitingForAHome,
+    HelpOutAtTheseLovingShelters,
+    RouterLink,
+    Trends,
+    PeopleYouMayKnow
+},
 
     data() {
         return {
