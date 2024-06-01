@@ -13,11 +13,11 @@
                 </div>
             </div>
         </div>-->
-
+        
         <div class="main-center col-span-3 space-y-4">
             <div class="bg-white border border-gray-200 rounded-lg p-4 flex flex-col justify-center items-center text-center space-y-4">
-                <h1 class="text-3xl font-bold text-pink-600">Tail Tales Terrace</h1>
-                <p class="text-lg italic text-gray-600">"Until one has loved an animal, a part of one's soul remains unawakened." - Anatole France</p>
+                <h1 class="text-3xl font-bold text-pink-600">Critter Community Corner</h1>
+                <p class="text-lg italic text-gray-600">"The love for all living creatures is the most noble attribute of man." - Charles Darwin</p>
             </div>
             <div class="p-4 bg-white border border-gray-200 rounded-lg">
                 <form v-on:submit.prevent="submitForm" method="post">
@@ -81,7 +81,7 @@
                 v-bind:key="post.id"
                 >
                 
-                    <FeedItem v-bind:post="post"/>
+                    <ForyouItem v-bind:post="post"/>
             </div>
         </div>
 
@@ -99,16 +99,17 @@
 import axios from 'axios'
 import HelpOutAtTheseLovingShelters from '../components/HelpOutAtTheseLovingShelters.vue'
 import AdorableFriendsWaitingForAHome from '../components/AdorableFriendsWaitingForAHome.vue'
-import FeedItem from '../components/FeedItem.vue'
+import ForyouItem from '../components/ForyouItem.vue'
 
 export default {
-    name: 'FeedView',
+    name: 'Foryouview',
 
     components: {
     AdorableFriendsWaitingForAHome,
     HelpOutAtTheseLovingShelters,
-    FeedItem
-    },
+    ForyouItem,
+    ForyouItem
+},
 
     data(){
         return {

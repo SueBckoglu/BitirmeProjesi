@@ -96,11 +96,12 @@ import AdorableFriendsWaitingForAHome from "../components/AdorableFriendsWaiting
 import FeedItem from "../components/FeedItem.vue";
 import { useUserStore } from "@/stores/user";
 
+
 export default (await import("vue")).defineComponent({
     name: "FriendsView",
 
     setup() {
-        const userStore = useUserStore();
+        const userStore = useUserStore()
 
         return {
             userStore,

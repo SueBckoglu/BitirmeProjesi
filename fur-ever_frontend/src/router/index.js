@@ -10,6 +10,7 @@ import VolunteerView from '../views/VolunteerView.vue'
 import DonationView from '../views/DonationView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import FriendsView from '../views/FriendsView.vue'
+import ForyouView from '../views/ForyouView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -68,6 +69,11 @@ const router = createRouter({
       path: '/profile/:id/friends',
       name: 'friends',
       component: FriendsView
+    },
+    {
+      path: '/foryou',
+      name: 'foryou',
+      component: ForyouView
     },
     {
       path: '/about',

@@ -1,6 +1,10 @@
 <template>
     <div class="max-w-7xl mx-auto grid grid-cols-4 gap-4">
         <div class="main-center col-span-4 space-y-4">
+            <div class="bg-white border border-gray-200 rounded-lg p-4 flex flex-col justify-center items-center text-center space-y-4">
+                <h1 class="text-3xl font-bold text-pink-600">Purrfect Match</h1>
+                <p class="text-lg italic text-gray-600">"The greatness of a nation and its moral progress can be judged by the way its animals are treated." - Mahatma Gandhi</p>
+            </div>
             <div class="bg-white border border-gray-200 rounded-lg">
                 <div class="p-4 flex space-x-4">
                     <input type="search" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="Find your purr-fect match!">

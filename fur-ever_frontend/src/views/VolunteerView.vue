@@ -1,6 +1,10 @@
 <template>
     <div class="max-w-7xl mx-auto grid grid-cols-4 gap-4">
         <div class="main-left col-span-3 space-y-4">
+            <div class="bg-white border border-gray-200 rounded-lg p-4 flex flex-col justify-center items-center text-center space-y-4">
+                <h1 class="text-3xl font-bold text-pink-600">Pawsitive Impact</h1>
+                <p class="text-lg italic text-gray-600">"The best way to find yourself is to lose yourself in the service of others." - Mahatma Gandhi</p>
+            </div>
             <div class="bg-white border border-gray-200 rounded-lg">
                 <div class="p-4 flex space-x-4">
                     <input type="search" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="Discover Ways to Help">

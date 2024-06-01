@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { useToastStore } from '@/stores/toast';
+import { useToastStore } from '@/stores/toast'
 import axios from 'axios';
 
 export default {
